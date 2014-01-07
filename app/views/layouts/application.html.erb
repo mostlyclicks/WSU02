@@ -2,13 +2,71 @@
 <html>
 <head>
   <title>WSU02</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
-<%= yield %>
+<div class="container">
+  <%= yield %>
+</div>
+
+<!-- <div id="slide-indicators">1 / 1</div>
+ -->
+
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src='/assets/swipe.js'></script>
+
+<script>
+var elem = document.getElementById('topSlider');
+var currentSlide = $("#topSlider > div.swipe-wrap > div").index(this) + 2;
+var totalSlides = $("#topSlider > div.swipe-wrap > div").length;
+console.log(totalSlides);
+console.log(currentSlide);
+
+window.topSwipe = Swipe(elem, {
+  startSlide: 0,
+  speed: 900,
+  auto: 6000,
+  continuous: true,
+  disableScroll: false,
+  stopPropagation: false,
+  callback: function(index, elem) {
+    document.getElementById('slide-indicators').innerHTML = currentSlide + ' / ' + totalSlides;
+  },
+  transitionEnd: function(index, elem) {}
+ });
+window.spotSwipe = Swipe(document.getElementById('spotSlider'));
+
+
+
+    
+
+   
+        
+</script>
+
+
+
+<script>
+$('#myTab a').click(function (e) {
+  e.preventDefault()
+  // $(this).tab('show')
+  $('#myTab a[href="#spotlight"]').tab('show')
+  $('#myTab a[href="#news"]').tab('show')
+  $('#myTab a[href="#events"]').tab('show')
+})
+</script>
 
 </body>
 </html>
